@@ -1,8 +1,12 @@
+from modules.embeddings import get_embedding_model
 import streamlit as st
 from modules.clone_repo import *
 from modules.utils import *
 from modules.loader import *
 from modules.constants import *
+from modules.chunker import *
+from modules.vectordb import *
+from modules.embeddings import *
 
 st.set_page_config(page_title="GitHub Repository Assistant")
 
@@ -19,6 +23,12 @@ if st.button("Clone Repository"):
             st.write("Repository Information:")
             st.json(repo_info)
             files, stats = load_repository(repo_path)
+            chunks = create_chunks(files)
+            st.write(f"Total Chunks Created: {len(chunks)}")
+            vector_db = create_vector_db(chunks, get_embedding_model())
+
+            st.success("Vector database created successfully!")
+
             st.success("Repository Loaded Successfully!")
 
             st.write("### Repository Statistics")
