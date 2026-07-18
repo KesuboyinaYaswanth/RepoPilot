@@ -1,13 +1,15 @@
-from langchain_ollama import OllamaEmbeddings
+#from langchain_ollama import OllamaEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
+
 
 
 def get_embedding_model():
     """
-    Returns the Ollama embedding model.
+    Returns the Hugging Face embedding model.
     """
 
-    embedding_model = OllamaEmbeddings(
-        model="nomic-embed-text"
+    embeddings = HuggingFaceEmbeddings(
+        model_name="BAAI/bge-small-en-v1.5"
     )
 
-    return embedding_model
+    return embeddings

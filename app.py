@@ -1,4 +1,3 @@
-from modules.embeddings import get_embedding_model
 import streamlit as st
 from modules.clone_repo import *
 from modules.utils import *
