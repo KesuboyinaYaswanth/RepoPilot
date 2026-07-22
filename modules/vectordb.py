@@ -15,6 +15,7 @@ def create_vector_db(chunks, embedding_model):
         documents=chunks,
         embedding=embedding_model
     )
+    db.save_local(VECTOR_DB_PATH)
 
     return db
 
